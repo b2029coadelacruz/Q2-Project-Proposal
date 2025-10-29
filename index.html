@@ -1,1 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Football</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6e/Soccer_ball.svg" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #111;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: rgba(0, 0, 0, 0.9);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      padding: 1em 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #e63946;
+    }
+    section {
+      padding: 100px 50px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #fff;
+    }
+    h1 {
+      font-size: 3em;
+      margin-top: 2em;
+      text-align: center;
+    }
+    h2 {
+      color: #e63946;
+      font-size: 2em;
+      margin-bottom: 0.2em;
+    }
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5em;
+      margin-top: 2em;
+    }
+    .card {
+      background-color: #000;
+      padding: 1em;
+      border-radius: 10px;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    footer {
+      background: #000;
+      color: #ccc;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2em;
+    }
+    footer img {
+      width: 24px;
+      margin: 0 5px;
+      filter: invert(1);
+    }
+  </style>
+</head>
+<body>
 
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#overview">OVERVIEW</a>
+    <a href="#players">PLAYERS</a>
+    <a href="#training">TRAINING & STATS</a>
+    <a href="#hall">HALL OF FAME</a>
+    <a href="#sources">SOURCES</a>
+  </nav>
+
+  <section id="home">
+    <h1>Welcome</h1>
+    <p style="text-align:center; font-size:1.2em;">
+      <em>A Comprehensive Guide to Football</em>
+    </p>
+    <p style="text-align:center; color:#e63946;">
+      This is a project for Computer Science 3. All sources will be credited on the sources page.
+    </p>
+
+    <div class="card-container">
+      <div class="card">
+        <h2>Overview</h2>
+        <p><em>Get ORIENTED</em><br> Learn about the sport’s rich history, major leagues, and the structure of global competitions.</p>
+        <img src="https://wallpapers.com/images/high/pelein-actionat-soccer-match-tfey81vpxpu6tb9q.webp">
+      </div>
+      <div class="card">
+        <h2>Players</h2>
+        <p><em>Meet the LEGENDS</em><br> Discover top football players, their achievements, and team affiliations worldwide.</p>
+        <img src="https://gray-weau-prod.gtv-cdn.com/resizer/v2/W5YJ4ZROJVDSVBY332QDZ67L4Y.jpg?auth=851614c6a0e1ab0e8d99d08a1e6371f1e2db016ff6d681c90aa13d292059ad04&width=1600&height=900&smart=true" alt="Player">
+      </div>
+      <div class="card">
+        <h2>Training & Stats</h2>
+        <p><em>Know the GAME</em><br> Explore football techniques, stats tracking, and the role of technology in modern matches.</p>
+        <img src="https://i.pinimg.com/originals/e8/f7/03/e8f703d31bcfc347515577928399992b.jpg" alt="Training">
+      </div>
+      <div class="card">
+        <h2>Hall of Fame</h2>
+        <p><em>Know the CHAMPIONS</em><br> View the legacy of football’s greatest players, from Pelé to Messi, who changed the game forever.</p>
+        <img src="https://pbs.twimg.com/media/E8Q4sHSWQAY5Sun.jpg" alt="Hall of Fame">
+      </div>
+    </div>
+  </section>
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>Football, known as soccer in some countries, is the world’s most popular sport — played and watched by billions of people across every continent. The game is centered around teamwork, skill, and strategy, uniting players and fans under a single goal: to outscore the opponent by getting the ball into the opposing team’s net.
+
+A standard match is played between two teams of eleven players, including one goalkeeper on each side. The game is governed by 17 Laws of the Game, maintained by the International Football Association Board (IFAB) and overseen globally by FIFA (Fédération Internationale de Football Association).
+
+Matches are played on a rectangular grass or turf field, with goals at each end. The game consists of two 45-minute halves, separated by a halftime break. Players use every part of their body except their hands and arms to control and move the ball—goalkeepers being the only exception within their penalty area.
+
+Beyond its simple rules, football is celebrated for its creativity, emotion, and unpredictability. Legendary tournaments like the FIFA World Cup, UEFA Champions League, and Copa América showcase the sport’s best talents and inspire millions. From local street games to global stadiums, football transcends language and culture, symbolizing unity, passion, and perseverance.</p>
+  </section>
+
+  <section id="players">
+    <h2>Players</h2>
+    <p>This section highlights some of the most prominent football players and their contributions to the sport.</p>
+    <ul>
+      <li><strong>Lionel Messi</strong> - Known for his incredible dribbling skills and goal-scoring ability, Messi has won multiple Ballon d'Or awards and has set numerous records in both club and international football.</li>
+      <li><strong>Cristiano Ronaldo</strong> - Renowned for his athleticism, versatility, and goal-scoring prowess, Ronaldo has also won multiple Ballon d'Or awards and has been a key player for clubs like Manchester United, Real Madrid, and Juventus.</li>
+      <li><strong>Neymar Jr.</strong> - A Brazilian forward known for his flair, creativity, and technical skills, Neymar has been a standout player for both club and country.</li>
+      <li><strong>Kylian Mbappé</strong> - A young French forward who has quickly risen to prominence with his speed, skill, and goal-scoring ability, Mbappé played a crucial role in France's 2018 World Cup victory.</li>
+      <li><strong>Virgil van Dijk</strong> - A Dutch defender known for his strength, leadership, and defensive skills, Van Dijk has been instrumental in Liverpool's recent successes.</li>
+  </section>
+
+  <section id="training">
+    <h2>Training & Stats</h2>
+    <p>Football training focuses on physical conditioning, ball control, and strategic awareness. Statistics are increasingly vital, with data analytics used to track player speed, possession rates, and scoring efficiency.</p>
+  </section>
+
+  <section id="hall">
+    <h2>Hall of Fame</h2>
+    <p>Some players leave an everlasting mark on football history. Here are a few icons whose names define greatness:</p>
+    <ul>
+      <li>Pelé — The King of Football</li>
+      <li>Diego Maradona — The Golden Boy</li>
+      <li>Zinedine Zidane — The Maestro</li>
+      <li>Lionel Messi — The Magician</li>
+    </ul>
+  </section>
+
+  <section id="sources">
+    <h2>Sources</h2>
+    <p>All materials and images used are credited to their respective owners:</p>
+    <ul>
+      <li>https://www.pinterest.com/pin/42362052739385711/</li>
+      <li>https://pbs.twimg.com/media/E8Q4sHSWQAY5Sun.jpg</li>
+      <li>https://www.google.com/search?sca_esv=21fdf5b9a4bf60d7&rlz=1C1VDKB_enPH1073PH1073&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeuYzzFkfneXafNx6OMdA4MQRJc_t_TQjwHYrzlkIauOKj9nSuujpEIbB1x32lFLEvPT3JmO8mWQjm2X3w-eMKXZ0RUYhz1JSpwmiVqRbYKaSUH5IT0DtjseXr7pWbySQW2IansKYxVko0I4Xq9VSCktKDaAksofpR02O_Zlq1OtpJOB00g&q=pele&sa=X&ved=2ahUKEwiVzKKFssmQAxWusFYBHXVwFe8QtKgLegQIERAB&biw=1536&bih=695&dpr=1.25&safe=active&ssui=on</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Football Project | Designed by WDProjSectionLastNames</p>
+    <div>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Instagram"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Twitter"></a>
+    </div>
+  </footer>
+
+</body>
+</html>
