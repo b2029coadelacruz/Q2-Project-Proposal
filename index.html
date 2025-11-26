@@ -5,19 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Football</title>
   <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6e/Soccer_ball.svg" />
+
   <style>
     html {
       scroll-behavior: smooth;
     }
     body {
       font-family: "Segoe UI", sans-serif;
-      background-color: #111;
+      background-color: #0a0a0a;
       color: white;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
+
+    /* ---------------- NAVIGATION ---------------- */
     nav {
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.85);
       position: fixed;
       top: 0;
       width: 100%;
@@ -26,140 +30,241 @@
       justify-content: center;
       gap: 2em;
       padding: 1em 0;
+      backdrop-filter: blur(5px);
     }
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.1em;
+      padding: 5px 10px;
       transition: 0.3s;
     }
     nav a:hover {
       color: #e63946;
+      transform: scale(1.1);
     }
+
+    /* ---------------- HERO SECTION ---------------- */
+    #home {
+      padding-top: 150px;
+      text-align: center;
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #111 100%);
+      padding-bottom: 80px;
+      animation: gradientMove 10s infinite alternate;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: left; }
+      100% { background-position: right; }
+    }
+
+    h1 {
+      font-size: 4em;
+      margin-top: 0.5em;
+      text-shadow: 0 0 20px rgba(230, 57, 70, 0.8);
+      letter-spacing: 3px;
+    }
+
+    #home p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.3em;
+    }
+
+    /* ---------------- CARD GRID ---------------- */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8em;
+      margin-top: 3em;
+      padding: 20px 40px;
+    }
+
+    .card {
+      background-color: #111;
+      padding: 1.2em;
+      border-radius: 15px;
+      text-align: left;
+      box-shadow: 0 0 20px rgba(255,255,255,0.08);
+      transition: 0.4s;
+      cursor: pointer;
+      border: 1px solid #222;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(230,57,70,0.4);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .card img:hover {
+      transform: scale(1.03);
+    }
+
+    /* ---------------- IMAGE POPUP MODAL ---------------- */
+    #imgModal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #imgModal img {
+      max-width: 85%;
+      max-height: 85%;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+
+    #imgModal:active {
+      display: none;
+    }
+
+    /* ---------------- GENERAL SECTIONS ---------------- */
     section {
       padding: 100px 50px;
       max-width: 1000px;
       margin: auto;
     }
-    h1, h2 {
-      color: #fff;
-    }
-    h1 {
-      font-size: 3em;
-      margin-top: 2em;
-      text-align: center;
-    }
+
     h2 {
       color: #e63946;
-      font-size: 2em;
-      margin-bottom: 0.2em;
+      font-size: 2.3em;
+      margin-bottom: 0.4em;
+      text-shadow: 0 0 10px rgba(230,57,70,0.6);
     }
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5em;
-      margin-top: 2em;
-    }
-    .card {
-      background-color: #000;
-      padding: 1em;
-      border-radius: 10px;
-      text-align: left;
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
+
+    /* ---------------- FOOTER ---------------- */
     footer {
       background: #000;
       color: #ccc;
       text-align: center;
-      padding: 1em;
-      margin-top: 2em;
+      padding: 2em 0;
+      margin-top: 3em;
     }
+
     footer img {
-      width: 24px;
-      margin: 0 5px;
+      width: 28px;
+      margin: 0 8px;
       filter: invert(1);
+      transition: 0.2s;
+    }
+    footer img:hover {
+      transform: scale(1.2);
     }
   </style>
+
 </head>
 <body>
 
-  <nav>
-<a href="https://b2029coadelacruz.github.io/Q2-Project-Proposal/">HOME</a>
-<a href="https://kskdheksnd.github.io/Overview/">OVERVIEW</a>
-<a href="https://kskdheksnd.github.io/Players/">PLAYERS</a>
-<a href="https://kskdheksnd.github.io/Training/">TRAINING & STATS</a>
-<a href="hall.html">HALL OF FAME</a>
-<a href="sources.html">SOURCES</a>
-  </nav>
+<!-- IMAGE ZOOM MODAL -->
+<div id="imgModal" onclick="closeImg()">
+  <img id="modalImg">
+</div>
 
-  <section id="home">
-    <h1>Welcome</h1>
-    <p style="text-align:center; font-size:1.2em;">
-      <em>A Comprehensive Guide to Football</em>
-    </p>
-    <p style="text-align:center; color:#e63946;">
-      This is a project for Computer Science 3. All sources will be credited on the sources page.
-    </p>
+<nav>
+  <a href="index.html">HOME</a>
+  <a href="https://kskdheksnd.github.io/Overview/">OVERVIEW</a>
+  <a href="https://kskdheksnd.github.io/Players/">PLAYERS</a>
+  <a href="training.html">TRAINING & STATS</a>
+  <a href="hall.html">HALL OF FAME</a>
+  <a href="sources.html">SOURCES</a>
+</nav>
 
-    <div class="card-container">
-      <div class="card">
-        <h2>Overview</h2>
-        <p><em>Get ORIENTED</em><br> Learn about the sport’s rich history, major leagues, and the structure of global competitions.</p>
-        <img src="https://wallpapers.com/images/high/pelein-actionat-soccer-match-tfey81vpxpu6tb9q.webp">
-      </div>
-      <div class="card">
-        <h2>Players</h2>
-        <p><em>Meet the LEGENDS</em><br> Discover top football players, their achievements, and team affiliations worldwide.</p>
-        <img src="https://gray-weau-prod.gtv-cdn.com/resizer/v2/W5YJ4ZROJVDSVBY332QDZ67L4Y.jpg?auth=851614c6a0e1ab0e8d99d08a1e6371f1e2db016ff6d681c90aa13d292059ad04&width=1600&height=900&smart=true" alt="Player">
-      </div>
-      <div class="card">
-        <h2>Training & Stats</h2>
-        <p><em>Know the GAME</em><br> Explore football techniques, stats tracking, and the role of technology in modern matches.</p>
-        <img src="https://i.pinimg.com/originals/e8/f7/03/e8f703d31bcfc347515577928399992b.jpg" alt="Training">
-      </div>
-      <div class="card">
-        <h2>Hall of Fame</h2>
-        <p><em>Know the CHAMPIONS</em><br> View the legacy of football’s greatest players, from Pelé to Messi, who changed the game forever.</p>
-        <img src="https://pbs.twimg.com/media/E8Q4sHSWQAY5Sun.jpg" alt="Hall of Fame">
-      </div>
+<!-- ---------------- HERO / HOME ---------------- -->
+<section id="home">
+  <h1>WELCOME TO FOOTBALL</h1>
+  <p><em>A Comprehensive Guide to the Beautiful Game</em></p>
+  <p style="color:#e63946;">
+    Project for Computer Science 3 — All sources credited.
+  </p>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>Overview</h2>
+      <p><em>Get ORIENTED</em><br> Learn about football’s history, major leagues, and global competitions.</p>
+      <img onclick="expandImg(this)" src="https://wallpapers.com/images/high/pelein-actionat-soccer-match-tfey81vpxpu6tb9q.webp">
     </div>
-  </section>
 
-
-  <section id="hall">
-    <h2>Hall of Fame</h2>
-    <p>Some players leave an everlasting mark on football history. Here are a few icons whose names define greatness:</p>
-    <ul>
-      <li>Pelé — The King of Football</li>
-      <li>Diego Maradona — The Golden Boy</li>
-      <li>Zinedine Zidane — The Maestro</li>
-      <li>Lionel Messi — The Magician</li>
-    </ul>
-  </section>
-
-  <section id="sources">
-    <h2>Sources</h2>
-    <p>All materials and images used are credited to their respective owners:</p>
-    <ul>
-      <li>https://www.pinterest.com/pin/42362052739385711/</li>
-      <li>https://pbs.twimg.com/media/E8Q4sHSWQAY5Sun.jpg</li>
-      <li>https://www.google.com/search?sca_esv=21fdf5b9a4bf60d7&rlz=1C1VDKB_enPH1073PH1073&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeuYzzFkfneXafNx6OMdA4MQRJc_t_TQjwHYrzlkIauOKj9nSuujpEIbB1x32lFLEvPT3JmO8mWQjm2X3w-eMKXZ0RUYhz1JSpwmiVqRbYKaSUH5IT0DtjseXr7pWbySQW2IansKYxVko0I4Xq9VSCktKDaAksofpR02O_Zlq1OtpJOB00g&q=pele&sa=X&ved=2ahUKEwiVzKKFssmQAxWusFYBHXVwFe8QtKgLegQIERAB&biw=1536&bih=695&dpr=1.25&safe=active&ssui=on</li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Football Project | Designed by WDProjSodiumDela Cruz, Maliuanag</p>
-    <div>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Instagram"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Twitter"></a>
+    <div class="card">
+      <h2>Players</h2>
+      <p><em>Meet the LEGENDS</em><br> Discover the world’s top players and their achievements.</p>
+      <img onclick="expandImg(this)" src="https://gray-weau-prod.gtv-cdn.com/resizer/v2/W5YJ4ZROJVDSVBY332QDZ67L4Y.jpg?auth=851614c6a0e1ab0e8d99d08a1e6371f1e2db016ff6d681c90aa13d292059ad04&width=1600&height=900&smart=true">
     </div>
-  </footer>
+
+    <div class="card">
+      <h2>Training & Stats</h2>
+      <p><em>Know the GAME</em><br> Explore football techniques, analytics, and technology.</p>
+      <img onclick="expandImg(this)" src="https://i.pinimg.com/originals/e8/f7/03/e8f703d31bcfc347515577928399992b.jpg">
+    </div>
+
+    <div class="card">
+      <h2>Hall of Fame</h2>
+      <p><em>Know the CHAMPIONS</em><br> Legends who shaped football history.</p>
+      <img onclick="expandImg(this)" src="https://pbs.twimg.com/media/E8Q4sHSWQAY5Sun.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- ---------------- OTHER SECTIONS ---------------- -->
+<section id="training">
+  <h2>Training & Stats</h2>
+  <p>Football training focuses on conditioning, ball control, and tactics. Data analytics tracks player speed, possession, efficiency, and more.</p>
+</section>
+
+<section id="hall">
+  <h2>Hall of Fame</h2>
+  <p>Some athletes leave an eternal legacy in the sport:</p>
+  <ul>
+    <li>Pelé — The King</li>
+    <li>Diego Maradona — The Golden Boy</li>
+    <li>Zinedine Zidane — The Maestro</li>
+    <li>Lionel Messi — The Magician</li>
+  </ul>
+</section>
+
+<section id="sources">
+  <h2>Sources</h2>
+  <p>All images and materials belong to their respective owners:</p>
+  <ul>
+    <li>https://www.pinterest.com/pin/42362052739385711/</li>
+    <li>https://pbs.twimg.com/media/E8Q4sHSWQAY5Sun.jpg</li>
+  </ul>
+</section>
+
+<footer>
+  <p>&copy; 2025 Football Project | Designed by WDProjSodiumDela Cruz, Maliuanag</p>
+  <div>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png"></a>
+  </div>
+</footer>
+
+<!-- ---------------- JAVASCRIPT: IMAGE EXPAND ---------------- -->
+<script>
+  function expandImg(img) {
+    document.getElementById("imgModal").style.display = "flex";
+    document.getElementById("modalImg").src = img.src;
+  }
+
+  function closeImg() {
+    document.getElementById("imgModal").style.display = "none";
+  }
+</script>
 
 </body>
 </html>
