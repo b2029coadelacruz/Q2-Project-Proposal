@@ -1,5 +1,5 @@
 # Q2-Project-Proposal
-Made by Na13-Dela Cruz
+Made by Na13-Dela Cruz, Na22-Maliuanag
 # Football
 
 ## "Tracking the Legends and the Game"
