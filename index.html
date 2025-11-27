@@ -7,9 +7,7 @@
   <link rel="https://github.com/kskdheksnd/CS-Proj-logo-/blob/8c3199faf92e056aa794d8c814fcd9421087d91f/Untitled%20design.pdf" href="https://github.com/kskdheksnd/CS-Proj-logo-/blob/8c3199faf92e056aa794d8c814fcd9421087d91f/Untitled%20design.pdf" />
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: "Segoe UI", sans-serif;
       background-color: #0a0a0a;
@@ -17,36 +15,14 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
-      animation: fadeIn 1.5s ease-in-out;
+      animation: fadeInBody 1.2s ease-in-out;
     }
 
-    /* Fade-in animation */
-    @keyframes fadeIn {
+    @keyframes fadeInBody {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
-    /* Slide-up animation */
-    @keyframes slideUp {
-      0% { transform: translateY(40px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    /* Glow pulse animation */
-    @keyframes glowPulse {
-      0% { text-shadow: 0 0 10px rgba(230,57,70,0.4); }
-      50% { text-shadow: 0 0 25px rgba(230,57,70,1); }
-      100% { text-shadow: 0 0 10px rgba(230,57,70,0.4); }
-    }
-
-    /* Floating animation */
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0); }
-    }
-
-    /* ---------------- NAVIGATION ---------------- */
     nav {
       background-color: rgba(0, 0, 0, 0.85);
       position: fixed;
@@ -58,8 +34,14 @@
       gap: 2em;
       padding: 1em 0;
       backdrop-filter: blur(5px);
-      animation: slideUp 1s ease-out;
+      animation: slideDownNav 1s ease forwards;
     }
+
+    @keyframes slideDownNav {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
     nav a {
       color: white;
       text-decoration: none;
@@ -68,20 +50,19 @@
       padding: 5px 10px;
       transition: 0.3s;
       opacity: 0;
-      animation: fadeIn 1s ease forwards;
+      animation: fadeInLinks 1.5s ease forwards;
     }
-    nav a:nth-child(1) { animation-delay: 0.2s; }
-    nav a:nth-child(2) { animation-delay: 0.35s; }
-    nav a:nth-child(3) { animation-delay: 0.5s; }
-    nav a:nth-child(4) { animation-delay: 0.65s; }
-    nav a:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes fadeInLinks {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
     nav a:hover {
       color: #e63946;
       transform: scale(1.1);
     }
 
-    /* ---------------- HERO SECTION ---------------- */
     #home {
       padding-top: 150px;
       text-align: center;
@@ -100,24 +81,34 @@
       margin-top: 0.5em;
       text-shadow: 0 0 20px rgba(230, 57, 70, 0.8);
       letter-spacing: 3px;
-      animation: slideUp 1.2s ease-out, glowPulse 3s infinite ease-in-out;
+      opacity: 0;
+      animation: fadeUp 1.5s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     #home p {
       max-width: 800px;
       margin: auto;
       font-size: 1.3em;
-      animation: fadeIn 2s ease;
+      opacity: 0;
+      animation: fadeInText 1.8s ease forwards;
     }
 
-    /* ---------------- CARD GRID ---------------- */
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     .card-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.8em;
       margin-top: 3em;
       padding: 20px 40px;
-      animation: fadeIn 2.3s ease;
     }
 
     .card {
@@ -130,18 +121,17 @@
       cursor: pointer;
       border: 1px solid #222;
       opacity: 0;
-      animation: slideUp 1s ease forwards;
+      animation: cardPop 1s ease forwards;
     }
 
-    .card:nth-child(1) { animation-delay: 0.4s; }
-    .card:nth-child(2) { animation-delay: 0.6s; }
-    .card:nth-child(3) { animation-delay: 0.8s; }
-    .card:nth-child(4) { animation-delay: 1.0s; }
+    @keyframes cardPop {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
 
     .card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-8px) scale(1.03);
       box-shadow: 0 0 25px rgba(230,57,70,0.4);
-      animation: float 3s infinite ease-in-out;
     }
 
     .card img {
@@ -149,13 +139,19 @@
       border-radius: 12px;
       margin-top: 10px;
       transition: 0.3s;
+      animation: fadeInImg 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInImg {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .card img:hover {
       transform: scale(1.03);
     }
 
-    /* ---------------- POPUP ---------------- */
     #imgModal {
       display: none;
       position: fixed;
@@ -167,7 +163,12 @@
       background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
-      animation: fadeIn 0.4s ease;
+      animation: fadeInModal 0.5s ease;
+    }
+
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     #imgModal img {
@@ -175,16 +176,35 @@
       max-height: 85%;
       border-radius: 10px;
       box-shadow: 0 0 30px rgba(255,255,255,0.3);
+      animation: zoomImg 0.5s ease;
     }
 
-    /* ---------------- FOOTER ---------------- */
+    @keyframes zoomImg {
+      from { transform: scale(0.6); }
+      to { transform: scale(1); }
+    }
+
+    section {
+      padding: 100px 50px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #e63946;
+      font-size: 2.3em;
+      margin-bottom: 0.4em;
+      text-shadow: 0 0 10px rgba(230,57,70,0.6);
+    }
+
     footer {
       background: #000;
       color: #ccc;
       text-align: center;
       padding: 2em 0;
       margin-top: 3em;
-      animation: fadeIn 2s ease;
+      opacity: 0;
+      animation: fadeUp 2s ease forwards;
     }
 
     footer img {
@@ -201,7 +221,6 @@
 </head>
 <body>
 
-<!-- IMAGE ZOOM MODAL -->
 <div id="imgModal" onclick="closeImg()">
   <img id="modalImg">
 </div>
@@ -214,7 +233,17 @@
   <a href="https://kskdheksnd.github.io/Hall-of-Fame/">HALL OF FAME</a>
 </nav>
 
-<!-- HERO -->
 <section id="home">
   <h1>WELCOME TO FOOTBALL</h1>
-  <p><em>A Comprehensive Guide to the
+  <p><em>A Comprehensive Guide to the Beautiful Game</em></p>
+  <p style="color:#e63946;">Project for Computer Science 3 — All sources credited.</p>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>Overview</h2>
+      <p><em>Get ORIENTED</em><br> Learn about football’s history, major leagues, and global competitions.</p>
+      <img onclick="expandImg(this)" src="https://wallpapers.com/images/high/pelein-actionat-soccer-match-tfey81vpxpu6tb9q.webp">
+    </div>
+
+    <div class="card">
+      <h2>Players</h
