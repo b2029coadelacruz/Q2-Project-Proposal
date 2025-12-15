@@ -1,0 +1,110 @@
+<style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(120deg, #111, #1a1a1a, #111);
+      background-size: 400% 400%;
+      animation: bgMove 12s infinite alternate ease-in-out;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.9);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      padding: 1em 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover { color: #e63946; }
+
+    section {
+      padding: 120px 50px 50px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1, h2 { color: #fff; }
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      margin-top: 0.5em;
+      opacity: 0;
+      animation: fadeSlide 1.3s ease forwards;
+    }
+
+    h2 {
+      color: #e63946;
+      font-size: 2.2em;
+      margin-bottom: 0.3em;
+      opacity: 0;
+      animation: fadeSlide 1.3s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    p.intro-text {
+      text-align: center;
+      font-size: 1.2em;
+      color: #ccc;
+      opacity: 0;
+      animation: fadeSlide 1.3s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .player-card {
+      background: rgba(0,0,0,0.8);
+      padding: 1.2em;
+      border-radius: 12px;
+      margin-bottom: 1.5em;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      opacity: 0;
+      transform: translateY(40px);
+      animation: cardFade 1.2s ease forwards;
+    }
+
+    .player-card:nth-of-type(1) { animation-delay: 1s; }
+    .player-card:nth-of-type(2) { animation-delay: 1.3s; }
+    .player-card:nth-of-type(3) { animation-delay: 1.6s; }
+    .player-card:nth-of-type(4) { animation-delay: 1.9s; }
+    .player-card:nth-of-type(5) { animation-delay: 2.2s; }
+
+    @keyframes cardFade {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .player-card h3 {
+      font-size: 1.6em;
+      margin-bottom: 0.2em;
+      color: #e63946;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #e63946; }
+      100% { text-shadow: 0 0 15px #e63946; }
+    }
+  </style>
