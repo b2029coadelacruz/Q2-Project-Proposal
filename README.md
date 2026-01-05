@@ -1,3 +1,12 @@
+# 3rd Qtr Update
+## Final Title
+## 2-sentence description
+## Features (min 3)
+## Details
+## Definition of Done
+
+---
+
 # Q2-Project-Proposal
 Made by Na13-Dela Cruz, Na22-Maliuanag
 # Football
