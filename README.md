@@ -1,36 +1,28 @@
 # 3rd Qtr Update
+
 ## Final Title
-## 2-sentence description
-## Features (min 3)
-## Details
-## Definition of Done
-
-#3rd Qtr Update
-
-##Final Title
 Football Website with User Account and Personalization System
 
-##2-Sentence Description##
+## 2-sentence description
 The Football website now includes a client-side user account system that allows visitors to create an account, log in, and view personalized information. User data is stored locally on the user’s computer using browser localStorage, making the system fully functional without a backend server.
 
-##Features (Minimum of 3)
+## Features (min 3)
 User sign-up form that collects and saves account information
 Login system that authenticates users using saved data
 Personalized profile page displaying user details
 Consistent navigation bar across all pages
 Client-side data persistence using localStorage
 
-##Details
+## Details
 The update introduces three new webpages: Sign-Up, Login, and Profile. Users create an account through an HTML form, and JavaScript saves their information as a JSON object in the browser’s localStorage. The login page validates user credentials, while the profile page retrieves and displays stored data. All pages are connected through a unified navigation bar and are compatible with GitHub Pages since no backend server is required.
 
-##Definition of Done
+## Definition of Done
 Users can successfully create an account using the sign-up form
 Account data is saved locally on the user’s computer
 Users can log in using their saved credentials
 Profile page correctly displays stored user information
 Navigation works correctly without 404 errors
 Project is deployed and accessible via GitHub Pages
-
 ---
 
 # Q2-Project-Proposal
