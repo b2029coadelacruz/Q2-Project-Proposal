@@ -6,39 +6,67 @@
     <title>Football</title>
     <link rel="icon" type="image/jpeg" href="https://i.pinimg.com/736x/98/c1/80/98c1805f69c2ebb120e3079236045fc6.jpg">
     <style>
-        /* CSS Variables for easy switching */
+        /* ================= THEME VARIABLES ================= */
         :root {
-            --bg-color: #0a0a0a;
+            --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             --text-color: white;
-            --card-bg: #111;
-            --card-border: #222;
-            --nav-bg: rgba(0, 0, 0, 0.85);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(0, 0, 0, 0.4);
             --accent: #e63946;
         }
 
-        /* Light Mode Overrides */
         body.light-mode {
-            --bg-color: #f4f4f4;
-            --text-color: #1a1a1a;
-            --card-bg: #ffffff;
-            --card-border: #ddd;
-            --nav-bg: rgba(255, 255, 255, 0.9);
+            --bg-gradient: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --text-color: #111;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --nav-bg: rgba(255, 255, 255, 0.5);
         }
 
         html { scroll-behavior: smooth; }
-        
+
         body {
             font-family: "Segoe UI", sans-serif;
-            background-color: var(--bg-color);
+            background: var(--bg-gradient);
             color: var(--text-color);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background 0.4s ease, color 0.4s ease;
+            position: relative;
         }
 
+        /* ================= PARTICLES ================= */
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0.8; }
+            50% { opacity: 0.4; }
+            100% { transform: translateY(-1000px) translateX(50px); opacity: 0; }
+        }
+
+        /* ================= NAVBAR (GLASS) ================= */
         nav {
-            background-color: var(--nav-bg);
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             position: fixed;
             top: 0;
             width: 100%;
@@ -48,8 +76,8 @@
             align-items: center;
             gap: 1.5em;
             padding: 1em 0;
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--glass-border);
+            transition: background 0.4s ease;
         }
 
         nav a {
@@ -62,7 +90,6 @@
 
         nav a:hover { color: var(--accent); }
 
-        /* Theme Toggle Button Style */
         #theme-toggle {
             background: var(--accent);
             color: white;
@@ -75,24 +102,34 @@
             transition: 0.3s;
         }
 
+        #theme-toggle:hover { transform: scale(1.05); }
+
+        /* ================= HERO ================= */
         #home {
             padding-top: 150px;
             text-align: center;
-            /* Gradient adjusts slightly for light mode via opacity or logic, but kept static for brand */
-            background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #111 100%);
             padding-bottom: 80px;
+            position: relative;
         }
 
-        body.light-mode #home {
-            background: linear-gradient(135deg, #e0e0e0 0%, #f4f4f4 100%);
+        #home::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(230,57,70,0.4) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            z-index: -1;
         }
 
         h1 {
             font-size: 4em;
-            text-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+            text-shadow: 0 0 30px rgba(230,57,70,0.6);
             letter-spacing: 3px;
         }
 
+        /* ================= GLASS CARDS ================= */
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -101,53 +138,100 @@
         }
 
         .card {
-            background-color: var(--card-bg);
-            padding: 1.2em;
-            border-radius: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5em;
             text-align: left;
-            border: 1px solid var(--card-border);
-            transition: 0.4s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0px);
+            transition: 0.8s ease-out;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 25px rgba(230,57,70,0.3);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 0 40px rgba(230,57,70,0.5);
         }
 
         .card img {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-top: 10px;
+            transition: 0.4s;
         }
 
+        .card img:hover { transform: scale(1.05); }
+
+        /* ================= IMAGE MODAL ================= */
         #imgModal {
             display: none;
             position: fixed;
             z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(20px);
             justify-content: center;
             align-items: center;
         }
 
-        #imgModal img { max-width: 85%; max-height: 85%; border-radius: 10px; }
-
-        footer {
-            background: #000;
-            color: #ccc;
-            text-align: center;
-            padding: 2em 0;
+        #imgModal img {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 20px;
         }
 
-        footer img { width: 24px; margin: 0 8px; filter: invert(1); }
+        /* ================= FOOTER ================= */
+        footer {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 2em 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--glass-border);
+            transition: background 0.4s ease;
+        }
+
+        /* ================= THEME RIPPLE ================= */
+        #theme-ripple {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: scale(0);
+            z-index: 3000;
+        }
+
+        #theme-ripple.active {
+            animation: rippleEffect 0.6s ease-out forwards;
+        }
+
+        @keyframes rippleEffect {
+            to { transform: scale(150); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- PARTICLES -->
+    <div id="particles"></div>
+
+    <!-- IMAGE MODAL -->
     <div id="imgModal" onclick="closeImg()">
         <img id="modalImg">
     </div>
+
+    <!-- RIPPLE DIV -->
+    <div id="theme-ripple"></div>
 
     <nav>
         <a href="#">HOME</a>
@@ -182,33 +266,54 @@
     <script>
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
+        const ripple = document.getElementById('theme-ripple');
 
-        // 1. Check LocalStorage on Load
+        // Load saved theme
         const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'light') {
-            body.classList.add('light-mode');
-        }
+        if (currentTheme === 'light') body.classList.add('light-mode');
 
-        // 2. Add Event Listener for Toggle
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            
-            // 3. Save Preference to LocalStorage
-            if (body.classList.contains('light-mode')) {
-                localStorage.setItem('theme', 'light');
-            } else {
-                localStorage.setItem('theme', 'dark');
-            }
+        // Toggle with ripple animation
+        themeToggle.addEventListener('click', (e) => {
+            const rect = themeToggle.getBoundingClientRect();
+            ripple.style.left = rect.left + rect.width / 2 + 'px';
+            ripple.style.top = rect.top + rect.height / 2 + 'px';
+            ripple.style.background = body.classList.contains('light-mode') ? '#0f2027' : '#ffffff';
+            ripple.classList.add('active');
+            setTimeout(() => {
+                body.classList.toggle('light-mode');
+                localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+            }, 200);
+            setTimeout(() => { ripple.classList.remove('active'); ripple.style.transform = 'scale(0)'; }, 600);
         });
 
-        // Modal Functions
+        // Modal functions
         function expandImg(img) {
             document.getElementById("imgModal").style.display = "flex";
             document.getElementById("modalImg").src = img.src;
         }
-        function closeImg() {
-            document.getElementById("imgModal").style.display = "none";
+        function closeImg() { document.getElementById("imgModal").style.display = "none"; }
+
+        // ================= PARTICLE GENERATION =================
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+        for (let i = 0; i < particleCount; i++) {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            p.style.left = Math.random() * window.innerWidth + 'px';
+            p.style.top = Math.random() * window.innerHeight + 'px';
+            p.style.animationDuration = 5 + Math.random() * 10 + 's';
+            particlesContainer.appendChild(p);
         }
+
+        // ================= SCROLL FADE-IN =================
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.3 });
+
+        cards.forEach(card => observer.observe(card));
     </script>
 </body>
 </html>
